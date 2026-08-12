@@ -118,7 +118,9 @@ async function load(){
 async function save(){
  await fetch('/api',{method:'POST',headers:{'Content-Type':'application/json'},
  body:JSON.stringify({steps:s.value,water:w.value,sleep:sl.value,weight:we.value,calories:cal.value,note:n.value})
- s.value=w.value=sl.value=we.value=n.value='';load();
+ });
+ s.value=w.value=sl.value=we.value=cal.value=n.value='';
+ load();
 }
 load();
 </script></body></html>
@@ -132,10 +134,10 @@ def api():
  c=db()
  if request.method=="POST":
   x=request.json
-  c.execute("INSERT INTO health VALUES(NULL,date('now'),?,?,?,?,?)",
-   (x.get("steps",0),x.get("water",0),x.get("sleep",0),x.get("weight",0),x.get("note","")))
+  c.execute("INSERT INTO health VALUES(NULL,date('now'),?,?,?,?,?,?)",
+   (x.get("steps",0),x.get("water",0),x.get("sleep",0),x.get("weight",0),x.get("calories",0),x.get("note","")))
   c.commit()
- rows=c.execute("SELECT date,steps,water,sleep,weight,note FROM health ORDER BY id DESC LIMIT 30").fetchall()
- return jsonify([dict(zip(["date","steps","water","sleep","weight","note"],r)) for r in rows])
+ rows=c.execute("SELECT id,date,steps,water,sleep,weight,calories,note FROM health ORDER BY id DESC LIMIT 30").fetchall()
+ return jsonify([dict(zip(["id","date","steps","water","sleep","weight","calories","note"],r)) for r in rows])
 
 app.run(host="0.0.0.0",port=5000)
