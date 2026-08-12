@@ -8,7 +8,7 @@ def db():
     c=sqlite3.connect(DB)
     c.execute("""CREATE TABLE IF NOT EXISTS health(
     id INTEGER PRIMARY KEY,date TEXT,steps INTEGER,water INTEGER,
-    sleep REAL,weight REAL,note TEXT)""")
+    sleep REAL,weight REAL,calories INTEGER,note TEXT)""")
     return c
 
 HTML="""
