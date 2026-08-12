@@ -126,8 +126,10 @@ async function load(){
   sleepBar.style.width=sleepPercent+'%';
  }
 
- history.innerHTML=d.map(x=>`<p>📅 ${x.date}<br>
- 👟 ${x.steps||0} steps · 💧 ${x.water||0} ml · 😴 ${x.sleep||0}h · ⚖️ ${x.weight||0}kg</p>`).join('');
+ history.innerHTML=d.map(x=>`<p>
+📅 ${x.date}<br>
+👟 ${x.steps||0} steps · 💧 ${x.water||0} ml · 😴 ${x.sleep||0}h · ⚖️ ${x.weight||0}kg · 🔥 ${x.calories||0} cal
+</p>`).join('');
 }
 async function save(){
  await fetch('/api',{method:'POST',headers:{'Content-Type':'application/json'},
