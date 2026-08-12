@@ -117,7 +117,7 @@ async function load(){
 }
 async function save(){
  await fetch('/api',{method:'POST',headers:{'Content-Type':'application/json'},
- body:JSON.stringify({steps:s.value,water:w.value,sleep:sl.value,weight:we.value,note:n.value})});
+ body:JSON.stringify({steps:s.value,water:w.value,sleep:sl.value,weight:we.value,calories:cal.value,note:n.value})
  s.value=w.value=sl.value=we.value=n.value='';load();
 }
 load();
