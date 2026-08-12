@@ -86,11 +86,29 @@ label{font-size:13px;color:#aaa}
 <script>
 async function load(){
  let d=await (await fetch('/api')).json();
+
  if(d.length){
+
   let x=d[0];
-  steps.innerText=x.steps||0;water.innerText=(x.water||0)+' ml';
-  sleep.innerText=(x.sleep||0)+' h';weight.innerText=(x.weight||0)+' kg';
+
+  steps.innerText=x.steps||0;
+  water.innerText=(x.water||0)+' ml';
+  sleep.innerText=(x.sleep||0)+' h';
+  weight.innerText=(x.weight||0)+' kg';
+
+  let stepPercent=Math.min(((x.steps||0)/5000)*100,100);
+  let waterPercent=Math.min(((x.water||0)/2000)*100,100);
+  let sleepPercent=Math.min(((x.sleep||0)/8)*100,100);
+
+  stepGoal.innerText=Math.round(stepPercent)+'%';
+  waterGoal.innerText=Math.round(waterPercent)+'%';
+  sleepGoal.innerText=Math.round(sleepPercent)+'%';
+
+  stepBar.style.width=stepPercent+'%';
+  waterBar.style.width=waterPercent+'%';
+  sleepBar.style.width=sleepPercent+'%';
  }
+
  history.innerHTML=d.map(x=>`<p>📅 ${x.date}<br>
  👟 ${x.steps||0} steps · 💧 ${x.water||0} ml · 😴 ${x.sleep||0}h · ⚖️ ${x.weight||0}kg</p>`).join('');
 }
