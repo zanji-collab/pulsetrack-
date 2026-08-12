@@ -27,6 +27,20 @@ input,textarea,button{width:100%;padding:13px;border:0;border-radius:12px;margin
 input,textarea{background:#252e49;color:white}
 button{background:#6c5ce7;color:white;font-weight:bold;font-size:16px}
 button:active{transform:scale(.98)}
+.progress{
+background:#252e49;
+height:12px;
+border-radius:20px;
+overflow:hidden;
+margin-bottom:15px
+}
+
+.bar{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,#6c5ce7,#00cec9);
+transition:width .5s
+}
 label{font-size:13px;color:#aaa}
 </style></head><body>
 <header><h1>PulseTrack 💙</h1><div class="sub">Your daily health dashboard</div></header>
@@ -39,6 +53,25 @@ label{font-size:13px;color:#aaa}
 <div>😴 Sleep<div class="stat" id="sleep">0 h</div></div>
 <div>⚖️ Weight<div class="stat" id="weight">0 kg</div></div>
 </div></div>
+<div class="card">
+<h2>🎯 Daily Goals</h2>
+
+<p>👟 Steps: <span id="stepGoal">0%</span></p>
+<div class="progress">
+<div id="stepBar" class="bar"></div>
+</div>
+
+<p>💧 Water: <span id="waterGoal">0%</span></p>
+<div class="progress">
+<div id="waterBar" class="bar"></div>
+</div>
+
+<p>😴 Sleep: <span id="sleepGoal">0%</span></p>
+<div class="progress">
+<div id="sleepBar" class="bar"></div>
+</div>
+
+</div>
 
 <div class="card"><h2>Update Today</h2>
 <label>Steps</label><input id="s" type="number" placeholder="e.g. 5000">
