@@ -6,9 +6,23 @@ DB="health.db"
 
 def db():
     c=sqlite3.connect(DB)
+
     c.execute("""CREATE TABLE IF NOT EXISTS health(
-    id INTEGER PRIMARY KEY,date TEXT,steps INTEGER,water INTEGER,
-    sleep REAL,weight REAL,calories INTEGER,note TEXT)""")
+    id INTEGER PRIMARY KEY,
+    date TEXT,
+    steps INTEGER,
+    water INTEGER,
+    sleep REAL,
+    weight REAL,
+    calories INTEGER DEFAULT 0,
+    note TEXT)""")
+
+    try:
+        c.execute("ALTER TABLE health ADD COLUMN calories INTEGER DEFAULT 0")
+        c.commit()
+    except sqlite3.OperationalError:
+        pass
+
     return c
 
 HTML="""
