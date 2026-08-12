@@ -78,6 +78,9 @@ label{font-size:13px;color:#aaa}
 <label>Water (ml)</label><input id="w" type="number" placeholder="e.g. 1500">
 <label>Sleep (hours)</label><input id="sl" type="number" step=".1" placeholder="e.g. 8">
 <label>Weight (kg)</label><input id="we" type="number" step=".1" placeholder="e.g. 65">
+
+<label>Calories</label><input id="cal" type="number" placeholder="e.g. 2000">
+
 <label>Notes</label><textarea id="n" placeholder="How was your day?"></textarea>
 <button onclick="save()">SAVE TODAY</button></div>
 
